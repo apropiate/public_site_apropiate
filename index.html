@@ -539,10 +539,155 @@
         <p>&copy; 2025 Apropiate. Todos los derechos reservados. | Convirtiendo sueños en realidad.</p>
     </footer>
 
-    <!-- Configuration Script -->
-    <script src="config.js"></script>
-    
     <script>
+        // Configuration with environment variables
+        let CONFIG = {
+            GOOGLE_APPS_SCRIPT_URL: '',
+            CONTACT_EMAIL: '',
+            DEBUG: false,
+            ENVIRONMENT: 'loading'
+        };
+        
+        let configLoaded = false;
+        
+        // Function to load environment variables
+        async function loadConfig() {
+            const isLocal = location.hostname === 'localhost' || 
+                           location.hostname === '127.0.0.1' || 
+                           location.hostname === '';
+            
+            if (isLocal) {
+                // Load from .env file in development
+                try {
+                    const response = await fetch('/.env');
+                    if (response.ok) {
+                        const envText = await response.text();
+                        const envVars = {};
+                        
+                        envText.split('\n').forEach(line => {
+                            const [key, ...valueParts] = line.split('=');
+                            if (key && valueParts.length > 0) {
+                                envVars[key.trim()] = valueParts.join('=').trim();
+                            }
+                        });
+                        
+                        CONFIG = {
+                            GOOGLE_APPS_SCRIPT_URL: envVars.GOOGLE_APPS_SCRIPT_URL || '',
+                            CONTACT_EMAIL: envVars.CONTACT_EMAIL || 'dev@apropiate.com',
+                            DEBUG: true,
+                            ENVIRONMENT: 'development'
+                        };
+                        
+                        console.log('🔧 Development config loaded from .env');
+                    } else {
+                        throw new Error('.env file not found');
+                    }
+                } catch (error) {
+                    console.warn('⚠️ Could not load .env file, using fallback config');
+                    CONFIG = {
+                        GOOGLE_APPS_SCRIPT_URL: 'http://localhost:3000/api/form',
+                        CONTACT_EMAIL: 'dev@apropiate.com',
+                        DEBUG: true,
+                        ENVIRONMENT: 'development'
+                    };
+                }
+            } else {
+                // Production: Use GitHub Pages environment variables
+                CONFIG = {
+                    GOOGLE_APPS_SCRIPT_URL: '{{secrets.GOOGLE_APPS_SCRIPT_URL}}',
+                    CONTACT_EMAIL: '{{secrets.CONTACT_EMAIL}}',
+                    DEBUG: false,
+                    ENVIRONMENT: 'production'
+                };
+                
+                console.log('🚀 Production config loaded');
+            }
+            
+            configLoaded = true;
+            
+            // Validate configuration
+            if (!CONFIG.GOOGLE_APPS_SCRIPT_URL || CONFIG.GOOGLE_APPS_SCRIPT_URL.includes('{{')) {
+                console.error('❌ Google Apps Script URL not configured properly');
+                if (CONFIG.DEBUG) {
+                    alert('Configuration Error: Google Apps Script URL not set. Check your environment variables.');
+                }
+            }
+            
+            console.log('✅ Configuration loaded:', CONFIG);
+        }
+        
+        // Utility functions
+        const utils = {
+            isValidEmail: function(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            },
+            
+            trackEvent: function(eventName, properties = {}) {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', eventName, {
+                        ...properties,
+                        environment: CONFIG.ENVIRONMENT
+                    });
+                }
+                
+                if (CONFIG.DEBUG) {
+                    console.log('📊 Analytics Event:', eventName, properties);
+                }
+            },
+            
+            submitForm: async function(formData) {
+                try {
+                    if (CONFIG.DEBUG) {
+                        console.log('📤 Submitting form:', formData);
+                        console.log('📍 URL:', CONFIG.GOOGLE_APPS_SCRIPT_URL);
+                    }
+                    
+                    const response = await fetch(CONFIG.GOOGLE_APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors', // Required for Google Apps Script
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            ...formData,
+                            timestamp: new Date().toISOString(),
+                            environment: CONFIG.ENVIRONMENT,
+                            source: 'apropiate_website'
+                        })
+                    });
+                    
+                    if (CONFIG.DEBUG) {
+                        console.log('✅ Form submitted successfully');
+                    }
+                    
+                    return { success: true };
+                    
+                } catch (error) {
+                    console.error('❌ Error submitting form:', error);
+                    return { success: false, error: error.message };
+                }
+            },
+            
+            // Wait for config to load
+            waitForConfig: async function(maxAttempts = 50) {
+                let attempts = 0;
+                while (!configLoaded && attempts < maxAttempts) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    attempts++;
+                }
+                
+                if (!configLoaded) {
+                    throw new Error('Configuration failed to load');
+                }
+                
+                return CONFIG;
+            }
+        };
+        
+        // Load configuration immediately when script loads
+        loadConfig();
+        
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -567,100 +712,107 @@
             }
         });
 
-        // Form submission usando la configuración
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const loading = document.getElementById('loading');
-            const successMessage = document.getElementById('successMessage');
-            const submitBtn = document.querySelector('.submit-btn');
-            
-            // Validar campos requeridos
-            const nombre = document.getElementById('nombre').value.trim();
-            const apellido = document.getElementById('apellido').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const ahorros = document.getElementById('ahorros').value;
-            const ingresos = document.getElementById('ingresos').value;
-            
-            // Validaciones básicas
-            if (!nombre || !apellido || !email || !ahorros || !ingresos) {
-                alert('Por favor, completa todos los campos requeridos.');
-                return;
-            }
-            
-            if (!CONFIG.utils.isValidEmail(email)) {
-                alert('Por favor, ingresa un email válido.');
-                return;
-            }
-            
-            // Show loading
-            loading.style.display = 'block';
-            submitBtn.disabled = true;
-            
-            // Preparar datos del formulario
-            const formData = {
-                nombre: nombre,
-                apellido: apellido,
-                email: email,
-                ahorros: ahorros,
-                ingresos: ingresos,
-                timestamp: new Date().toISOString(),
-                page_url: window.location.href,
-                user_agent: navigator.userAgent
-            };
-            
-            try {
-                // Usar la función utilitaria de configuración
-                const result = await CONFIG.utils.submitForm(formData);
+        // Form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('contactForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
                 
-                if (result.success) {
-                    // Mostrar mensaje de éxito
+                const loading = document.getElementById('loading');
+                const successMessage = document.getElementById('successMessage');
+                const submitBtn = document.querySelector('.submit-btn');
+                
+                // Get form data
+                const nombre = document.getElementById('nombre').value.trim();
+                const apellido = document.getElementById('apellido').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const ahorros = document.getElementById('ahorros').value;
+                const ingresos = document.getElementById('ingresos').value;
+                
+                // Basic validation
+                if (!nombre || !apellido || !email || !ahorros || !ingresos) {
+                    alert('Por favor, completa todos los campos requeridos.');
+                    return;
+                }
+                
+                if (!utils.isValidEmail(email)) {
+                    alert('Por favor, ingresa un email válido.');
+                    return;
+                }
+                
+                // Show loading
+                loading.style.display = 'block';
+                submitBtn.disabled = true;
+                
+                // Prepare form data
+                const formData = {
+                    nombre: nombre,
+                    apellido: apellido,
+                    email: email,
+                    ahorros: ahorros,
+                    ingresos: ingresos,
+                    page_url: window.location.href,
+                    user_agent: navigator.userAgent
+                };
+                
+                try {
+                    // Wait for config to be loaded
+                    await utils.waitForConfig();
+                    
+                    if (!CONFIG.GOOGLE_APPS_SCRIPT_URL || CONFIG.GOOGLE_APPS_SCRIPT_URL === '') {
+                        throw new Error('Google Apps Script URL not configured');
+                    }
+                    
+                    const result = await utils.submitForm(formData);
+                    
+                    if (result.success) {
+                        // Show success message
+                        loading.style.display = 'none';
+                        successMessage.style.display = 'block';
+                        this.reset();
+                        
+                        // Track analytics event
+                        utils.trackEvent('form_submit', {
+                            event_category: 'engagement',
+                            event_label: 'contact_form_success'
+                        });
+                        
+                        // Scroll to success message
+                        successMessage.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                        
+                    } else {
+                        throw new Error(result.error || 'Unknown error');
+                    }
+                    
+                } catch (error) {
+                    console.error('Form submission error:', error);
                     loading.style.display = 'none';
-                    successMessage.style.display = 'block';
-                    this.reset();
                     
-                    // Track evento de analytics
-                    CONFIG.utils.trackEvent('form_submit', {
-                        event_category: 'engagement',
-                        event_label: 'contact_form_success'
+                    let errorMessage = 'Hubo un error al enviar el formulario. ';
+                    
+                    if (CONFIG.DEBUG) {
+                        errorMessage += `\n\nDetalles técnicos: ${error.message}`;
+                        errorMessage += `\nEntorno: ${CONFIG.ENVIRONMENT}`;
+                        errorMessage += `\nURL: ${CONFIG.GOOGLE_APPS_SCRIPT_URL}`;
+                        errorMessage += `\nConfig loaded: ${configLoaded}`;
+                    } else {
+                        errorMessage += 'Por favor, inténtalo de nuevo o contáctanos directamente.';
+                    }
+                    
+                    alert(errorMessage);
+                    
+                    // Track error event
+                    utils.trackEvent('form_error', {
+                        event_category: 'error',
+                        event_label: 'contact_form_error',
+                        error_message: error.message
                     });
-                    
-                    // Scroll al mensaje de éxito
-                    successMessage.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'center' 
-                    });
-                    
-                } else {
-                    throw new Error(result.error || 'Error desconocido');
                 }
                 
-            } catch (error) {
-                console.error('Error enviando formulario:', error);
-                loading.style.display = 'none';
-                
-                // Mensaje de error más informativo
-                let errorMessage = 'Hubo un error al enviar el formulario. ';
-                
-                if (CONFIG.DEBUG) {
-                    errorMessage += `\n\nDetalles técnicos: ${error.message}`;
-                    errorMessage += `\nEntorno: ${CONFIG.ENVIRONMENT}`;
-                    errorMessage += `\nURL: ${CONFIG.GOOGLE_APPS_SCRIPT_URL}`;
-                } else {
-                    errorMessage += 'Por favor, inténtalo de nuevo o contáctanos directamente.';
-                }
-                
-                alert(errorMessage);
-                
-                // Track evento de error
-                CONFIG.utils.trackEvent('form_error', {
-                    event_category: 'error',
-                    event_label: 'contact_form_error',
-                    error_message: error.message
-                });
-            }
-            
-            submitBtn.disabled = false;
+                submitBtn.disabled = false;
+            });
         });
 
         // Add scroll animations
