@@ -16,15 +16,15 @@ window.APROPIATE_CONFIG = (function() {
     // Configuraciones por entorno
     const config = {
         development: {
-            GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/macros/s/TU_ID_DESARROLLO/exec',
-            CONTACT_EMAIL: 'desarrollo@apropiate.com',
+            GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/a/macros/apropiate.ai/s/AKfycbzDPgy4w5dxZ2P82IHLQwWfOq0Ljh5klV-GA9z35_xPQfGE1yorp9gZnO2NZZj_oI6rlQ/exec',
+            CONTACT_EMAIL: 'admin@apropiate.ai',
             DEBUG: true,
             ENVIRONMENT: 'development'
         },
         
         staging: {
-            GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/macros/s/TU_ID_STAGING/exec', 
-            CONTACT_EMAIL: 'staging@apropiate.com',
+            GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/a/macros/apropiate.ai/s/AKfycbzDPgy4w5dxZ2P82IHLQwWfOq0Ljh5klV-GA9z35_xPQfGE1yorp9gZnO2NZZj_oI6rlQ/exec', 
+            CONTACT_EMAIL: 'admin@apropiate.ai',
             DEBUG: true,
             ENVIRONMENT: 'staging'
         },
@@ -43,7 +43,7 @@ window.APROPIATE_CONFIG = (function() {
     
     if (hostname.includes('github.io')) {
         currentEnv = 'staging'; // Considera GitHub Pages como staging
-    } else if (hostname === 'apropiate.com' || hostname === 'www.apropiate.com') {
+    } else if (hostname === 'apropiate.ai' || hostname === 'www.apropiate.ai') {
         currentEnv = 'production'; // Tu dominio personalizado
     }
     
