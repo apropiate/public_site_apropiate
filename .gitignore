@@ -1,0 +1,27 @@
+# ==================
+# .gitignore
+# ==================
+# Archivos y carpetas que Git debe ignorar
+
+# Variables de entorno
+.env
+.env.local
+.env.production
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporales
+*.tmp
+*.temp
