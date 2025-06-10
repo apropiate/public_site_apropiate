@@ -503,22 +503,22 @@
                         <label for="ahorros">Cantidad Ahorrada para Inicial *</label>
                         <select id="ahorros" name="ahorros" required>
                             <option value="">Selecciona un rango</option>
-                            <option value="0-5000">$0 - $5,000</option>
-                            <option value="5000-10000">$5,000 - $10,000</option>
-                            <option value="10000-20000">$10,000 - $20,000</option>
-                            <option value="20000-50000">$20,000 - $50,000</option>
-                            <option value="50000+">$50,000+</option>
+                            <option value="0-5000">€0 - €5,000</option>
+                            <option value="5000-10000">€5,000 - €10,000</option>
+                            <option value="10000-20000">€10,000 - €20,000</option>
+                            <option value="20000-50000">€20,000 - €50,000</option>
+                            <option value="50000+">€50,000+</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="ingresos">Ingresos Mensuales del Hogar *</label>
                         <select id="ingresos" name="ingresos" required>
                             <option value="">Selecciona un rango</option>
-                            <option value="1000-2000">$1,000 - $2,000</option>
-                            <option value="2000-3000">$2,000 - $3,000</option>
-                            <option value="3000-4000">$3,000 - $4,000</option>
-                            <option value="4000-5000">$4,000 - $5,000</option>
-                            <option value="5000+">$5,000+</option>
+                            <option value="1000-2000">€1,000 - €2,000</option>
+                            <option value="2000-3000">€2,000 - €3,000</option>
+                            <option value="3000-4000">€3,000 - €4,000</option>
+                            <option value="4000-5000">€4,000 - €5,000</option>
+                            <option value="5000+">€5,000+</option>
                         </select>
                     </div>
                     <button type="submit" class="submit-btn">Solicitar Análisis Gratuito</button>
@@ -552,9 +552,10 @@
         
         // Function to load environment variables
         async function loadConfig() {
-            const isLocal = location.hostname === 'localhost' || 
-                           location.hostname === '127.0.0.1' || 
-                           location.hostname === '';
+            const hostname = location.hostname;
+            const isLocal = hostname === 'localhost' || 
+                           hostname === '127.0.0.1' || 
+                           hostname === '';
             
             if (isLocal) {
                 // Load from .env file in development
@@ -585,17 +586,17 @@
                 } catch (error) {
                     console.warn('⚠️ Could not load .env file, using fallback config');
                     CONFIG = {
-                        GOOGLE_APPS_SCRIPT_URL: 'http://localhost:3000/api/form',
+                        GOOGLE_APPS_SCRIPT_URL: '',
                         CONTACT_EMAIL: 'dev@apropiate.com',
                         DEBUG: true,
                         ENVIRONMENT: 'development'
                     };
                 }
             } else {
-                // Production: Use GitHub Pages environment variables
+                // Production: Placeholders will be replaced by GitHub Actions
                 CONFIG = {
-                    GOOGLE_APPS_SCRIPT_URL: '{{secrets.GOOGLE_APPS_SCRIPT_URL}}',
-                    CONTACT_EMAIL: '{{secrets.CONTACT_EMAIL}}',
+                    GOOGLE_APPS_SCRIPT_URL: 'REPLACE_GOOGLE_APPS_SCRIPT_URL',
+                    CONTACT_EMAIL: 'REPLACE_CONTACT_EMAIL',
                     DEBUG: false,
                     ENVIRONMENT: 'production'
                 };
@@ -606,15 +607,24 @@
             configLoaded = true;
             
             // Validate configuration
-            if (!CONFIG.GOOGLE_APPS_SCRIPT_URL || CONFIG.GOOGLE_APPS_SCRIPT_URL.includes('{{')) {
+            if (!CONFIG.GOOGLE_APPS_SCRIPT_URL || 
+                CONFIG.GOOGLE_APPS_SCRIPT_URL.includes('REPLACE_') || 
+                CONFIG.GOOGLE_APPS_SCRIPT_URL === '') {
                 console.error('❌ Google Apps Script URL not configured properly');
-                if (CONFIG.DEBUG) {
-                    alert('Configuration Error: Google Apps Script URL not set. Check your environment variables.');
+                if (CONFIG.DEBUG || confirm('Google Apps Script URL no está configurada. ¿Quieres continuar de todas formas?')) {
+                    console.warn('⚠️ Continuing without proper configuration...');
                 }
             }
             
-            console.log('✅ Configuration loaded:', CONFIG);
+            console.log('✅ Configuration loaded:', {
+                ...CONFIG,
+                GOOGLE_APPS_SCRIPT_URL: CONFIG.GOOGLE_APPS_SCRIPT_URL ? 'Configured ✅' : 'Missing ❌'
+            });
         }
+        
+        // Alternative: You can also set the URL directly here for production
+        // Uncomment and update this line with your real Google Apps Script URL:
+        // const PRODUCTION_GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_REAL_ID/exec';
         
         // Utility functions
         const utils = {
@@ -638,12 +648,20 @@
             
             submitForm: async function(formData) {
                 try {
-                    if (CONFIG.DEBUG) {
-                        console.log('📤 Submitting form:', formData);
-                        console.log('📍 URL:', CONFIG.GOOGLE_APPS_SCRIPT_URL);
+                    // Alternative: Use the direct URL if main config fails
+                    // const scriptUrl = PRODUCTION_GOOGLE_APPS_SCRIPT_URL || CONFIG.GOOGLE_APPS_SCRIPT_URL;
+                    const scriptUrl = CONFIG.GOOGLE_APPS_SCRIPT_URL;
+                    
+                    if (!scriptUrl || scriptUrl.includes('REPLACE_')) {
+                        throw new Error('Google Apps Script URL not configured');
                     }
                     
-                    const response = await fetch(CONFIG.GOOGLE_APPS_SCRIPT_URL, {
+                    if (CONFIG.DEBUG) {
+                        console.log('📤 Submitting form:', formData);
+                        console.log('📍 URL:', scriptUrl);
+                    }
+                    
+                    const response = await fetch(scriptUrl, {
                         method: 'POST',
                         mode: 'no-cors', // Required for Google Apps Script
                         headers: {
@@ -758,8 +776,8 @@
                     // Wait for config to be loaded
                     await utils.waitForConfig();
                     
-                    if (!CONFIG.GOOGLE_APPS_SCRIPT_URL || CONFIG.GOOGLE_APPS_SCRIPT_URL === '') {
-                        throw new Error('Google Apps Script URL not configured');
+                    if (!CONFIG.GOOGLE_APPS_SCRIPT_URL || CONFIG.GOOGLE_APPS_SCRIPT_URL === '' || CONFIG.GOOGLE_APPS_SCRIPT_URL.includes('REPLACE_')) {
+                        throw new Error('Google Apps Script URL not configured. Please check the configuration.');
                     }
                     
                     const result = await utils.submitForm(formData);
@@ -797,6 +815,7 @@
                         errorMessage += `\nEntorno: ${CONFIG.ENVIRONMENT}`;
                         errorMessage += `\nURL: ${CONFIG.GOOGLE_APPS_SCRIPT_URL}`;
                         errorMessage += `\nConfig loaded: ${configLoaded}`;
+                        errorMessage += `\nHostname: ${location.hostname}`;
                     } else {
                         errorMessage += 'Por favor, inténtalo de nuevo o contáctanos directamente.';
                     }
