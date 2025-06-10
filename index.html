@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apropiate - Tu Camino Hacia la Casa Propia</title>
+    <title>Apropiate - Tu Camino Hacia tu Casa Propia</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23667eea'/><stop offset='100%' style='stop-color:%23764ba2'/></linearGradient></defs><rect width='100' height='100' fill='url(%23grad)' rx='20'/><path d='M25 65 L50 40 L75 65 L75 75 L60 75 L60 55 L40 55 L40 75 Z' fill='white' stroke='white' stroke-width='2'/><circle cx='45' cy='50' r='2' fill='%23667eea'/></svg>" type="image/svg+xml">
     <style>
         * {
             margin: 0;
@@ -144,12 +145,28 @@
             background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-links a {
@@ -160,6 +177,142 @@
         }
 
         .nav-links a:hover {
+            color: #f093fb;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text-dark);
+        }
+
+        nav.scrolled .nav-links a:hover {
+            color: #f093fb;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-gradient);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Floating Back to Top Button */
+        .floating-back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+
+        .floating-back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .floating-back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            background: var(--secondary-gradient);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        nav.scrolled .mobile-menu-toggle span {
+            background: var(--text-dark);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 1rem 0;
+        }
+
+        .mobile-menu ul li {
+            text-align: center;
+            padding: 0.5rem 0;
+        }
+
+        .mobile-menu ul li a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu ul li a:hover {
             color: #f093fb;
         }
 
@@ -341,6 +494,18 @@
             .nav-links {
                 display: none;
             }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .floating-back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
             
             .section {
                 padding-left: 1rem;
@@ -350,6 +515,10 @@
             .form-container {
                 margin: 0 1rem;
                 padding: 2rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
             }
         }
 
@@ -390,12 +559,36 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">Apropiate</div>
+            <div class="logo" onclick="scrollToTop()">
+                <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#667eea"/>
+                            <stop offset="100%" style="stop-color:#764ba2"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="100" height="100" fill="url(#logoGrad)" rx="20"/>
+                    <path d="M25 65 L50 40 L75 65 L75 75 L60 75 L60 55 L40 55 L40 75 Z" fill="white" stroke="white" stroke-width="2"/>
+                    <circle cx="45" cy="50" r="2" fill="#667eea"/>
+                </svg>
+                Apropiate
+            </div>
             <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#proceso">Proceso</a></li>
                 <li><a href="#beneficios">Beneficios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="#proceso" onclick="closeMobileMenu()">Proceso</a></li>
+                <li><a href="#beneficios" onclick="closeMobileMenu()">Beneficios</a></li>
+                <li><a href="#contacto" onclick="closeMobileMenu()">Contacto</a></li>
             </ul>
         </div>
     </nav>
@@ -538,6 +731,11 @@
     <footer>
         <p>&copy; 2025 Apropiate. Todos los derechos reservados. | Convirtiendo sueños en realidad.</p>
     </footer>
+
+    <!-- Floating Back to Top Button -->
+    <button class="floating-back-to-top" id="floatingBackToTop" onclick="scrollToTop()" title="Ir arriba">
+        ↑
+    </button>
 
     <script>
         // Configuration with environment variables
@@ -705,6 +903,42 @@
         
         // Load configuration immediately when script loads
         loadConfig();
+        
+        // Mobile menu functions
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            mobileMenu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+        
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            mobileMenu.classList.remove('active');
+            toggle.classList.remove('active');
+        }
+        
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!nav.contains(event.target) && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
         
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
