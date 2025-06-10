@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apropiate - Tu Camino Hacia tu Casa Propia</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23667eea'/><stop offset='100%' style='stop-color:%23764ba2'/></linearGradient></defs><rect width='100' height='100' fill='url(%23grad)' rx='20'/><path d='M25 65 L50 40 L75 65 L75 75 L60 75 L60 55 L40 55 L40 75 Z' fill='white' stroke='white' stroke-width='2'/><circle cx='45' cy='50' r='2' fill='%23667eea'/></svg>" type="image/svg+xml">
+    <title>Apropiate - Tu Camino Hacia la Casa Propia</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23635bff'/><stop offset='100%' style='stop-color:%230a2540'/></linearGradient></defs><rect width='100' height='100' fill='url(%23grad)' rx='20'/><path d='M25 65 L50 40 L75 65 L75 75 L60 75 L60 55 L40 55 L40 75 Z' fill='white' stroke='white' stroke-width='2'/><circle cx='45' cy='50' r='2' fill='%23635bff'/></svg>" type="image/svg+xml">
     <style>
         * {
             margin: 0;
@@ -13,33 +13,53 @@
         }
 
         :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --dark-bg: #0f0f23;
-            --card-bg: rgba(255, 255, 255, 0.1);
+            --stripe-purple: #635bff;
+            --stripe-dark: #0a2540;
+            --stripe-light-blue: #00d4ff;
+            --stripe-green: #00d924;
+            --stripe-pink: #ff5470;
+            --stripe-orange: #ff6b35;
+            --stripe-bg: #f6f9fc;
+            --stripe-text: #425466;
+            --primary-gradient: linear-gradient(135deg, #635bff 0%, #0a2540 100%);
+            --secondary-gradient: linear-gradient(135deg, #635bff 0%, #00d4ff 100%);
+            --accent-gradient: linear-gradient(135deg, #00d4ff 0%, #00d924 100%);
+            --dark-bg: #0a2540;
             --text-light: #ffffff;
-            --text-dark: #333333;
-            --glass-bg: rgba(255, 255, 255, 0.15);
-            --shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+            --text-dark: #0a2540;
+            --shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 50px 100px rgba(0, 0, 0, 0.25);
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
             overflow-x: hidden;
         }
 
-        /* Hero Section */
+        /* Hero Section - Stripe Inspired with Moving Gradient */
         .hero {
             min-height: 100vh;
-            background: var(--primary-gradient);
+            background: linear-gradient(-45deg, #635bff, #ff5470, #00d4ff, #ff6b35, #0a2540);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             display: flex;
             align-items: center;
-            justify-content: center;
             position: relative;
             overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .hero::before {
@@ -49,57 +69,329 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        }
+
+        /* Creative gradient shapes */
+        .gradient-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.15;
             animation: float 20s ease-in-out infinite;
         }
 
+        .shape-1 {
+            top: 10%;
+            left: 10%;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #635bff, #00d4ff);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            top: 60%;
+            right: 15%;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #ff5470, #ff6b35);
+            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+            animation-delay: -7s;
+        }
+
+        .shape-3 {
+            bottom: 20%;
+            left: 20%;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(225deg, #00d924, #00d4ff);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation-delay: -14s;
+        }
+
+        .shape-4 {
+            top: 30%;
+            right: 40%;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(315deg, #635bff, #ff5470);
+            border-radius: 50%;
+            animation-delay: -3s;
+        }
+
+        .shape-5 {
+            bottom: 40%;
+            right: 5%;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(180deg, #ff6b35, #00d4ff);
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+            animation-delay: -10s;
+        }
+
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(1deg); }
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.15;
+            }
+            33% { 
+                transform: translateY(-30px) rotate(120deg) scale(1.1);
+                opacity: 0.25;
+            }
+            66% { 
+                transform: translateY(15px) rotate(240deg) scale(0.9);
+                opacity: 0.1;
+            }
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
         }
 
         .hero-content {
-            text-align: center;
             color: var(--text-light);
-            z-index: 2;
-            position: relative;
-            max-width: 800px;
-            padding: 2rem;
+            z-index: 3;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #fff, #f0f0f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
             animation: slideInUp 1s ease-out;
         }
 
+        .hero-badge::before {
+            content: '🚀';
+            font-size: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideInUp 1s ease-out 0.2s both;
+            line-height: 1.1;
+        }
+
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: slideInUp 1s ease-out 0.3s both;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            animation: slideInUp 1s ease-out 0.4s both;
+            color: #f1f5f9;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.6s both;
         }
 
         .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--secondary-gradient);
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.2rem 2.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--stripe-dark);
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 8px;
             font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
-            animation: slideInUp 1s ease-out 0.6s both;
-            box-shadow: var(--shadow);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border: none;
+            cursor: pointer;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Mobile App Mockup */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: slideInUp 1s ease-out 0.8s both;
+        }
+
+        .phone-mockup {
+            position: relative;
+            width: 320px;
+            height: 640px;
+            background: #ffffff;
+            border-radius: 40px;
+            padding: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 0 8px #f8fafc;
+            border: 2px solid #e2e8f0;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 32px;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--stripe-dark);
+        }
+
+        .notification-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--stripe-pink);
+            border-radius: 50%;
+        }
+
+        .progress-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .house-image {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(135deg, var(--stripe-purple), var(--stripe-light-blue));
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .progress-info h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--stripe-dark);
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-gradient);
+            width: 65%;
+            border-radius: 4px;
+            animation: progressGrow 2s ease-out 1.5s both;
+        }
+
+        @keyframes progressGrow {
+            from { width: 0%; }
+            to { width: 65%; }
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--stripe-text);
+        }
+
+        .payment-list {
+            space-y: 10px;
+        }
+
+        .payment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .payment-item:last-child {
+            border-bottom: none;
+        }
+
+        .payment-date {
+            font-size: 0.9rem;
+            color: var(--stripe-text);
+        }
+
+        .payment-amount {
+            font-weight: 600;
+            color: var(--stripe-green);
         }
 
         @keyframes slideInUp {
@@ -118,16 +410,20 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
+            background: transparent;
+            backdrop-filter: none;
             z-index: 1000;
-            padding: 1rem 0;
+            padding: 1.5rem 0;
             transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
         }
 
         nav.scrolled {
             background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             box-shadow: var(--shadow);
+            padding: 1rem 0;
         }
 
         .nav-container {
@@ -174,10 +470,11 @@
             color: var(--text-light);
             font-weight: 500;
             transition: all 0.3s ease;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover {
-            color: #f093fb;
+            color: var(--stripe-light-blue);
         }
 
         nav.scrolled .nav-links a {
@@ -185,27 +482,7 @@
         }
 
         nav.scrolled .nav-links a:hover {
-            color: #f093fb;
-        }
-
-        /* Back to top button */
-        .back-to-top {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--accent-gradient);
-            color: white;
-            border-radius: 50%;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            color: var(--stripe-purple);
         }
 
         /* Floating Back to Top Button */
@@ -213,31 +490,34 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 60px;
-            height: 60px;
+            width: 56px;
+            height: 56px;
             background: var(--primary-gradient);
             color: white;
             border: none;
             border-radius: 50%;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 999;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(20px);
+            transform: translateY(20px) scale(0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .floating-back-to-top.visible {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .floating-back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: var(--shadow-lg);
             background: var(--secondary-gradient);
         }
 
@@ -313,12 +593,12 @@
         }
 
         .mobile-menu ul li a:hover {
-            color: #f093fb;
+            color: var(--stripe-purple);
         }
 
         /* Sections */
         .section {
-            padding: 5rem 0;
+            padding: 6rem 0;
             max-width: 1200px;
             margin: 0 auto;
             padding-left: 2rem;
@@ -326,36 +606,48 @@
         }
 
         .section h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             text-align: center;
             margin-bottom: 3rem;
             background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 700;
         }
 
         /* Process Steps */
         .process-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
         .process-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--secondary-gradient);
         }
 
         .process-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
 
         .process-number {
@@ -369,30 +661,37 @@
             font-size: 1.5rem;
             font-weight: bold;
             color: white;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.5rem;
         }
 
         .process-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 1rem;
             color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .process-card p {
+            color: var(--stripe-text);
+            line-height: 1.6;
         }
 
         /* Contact Form */
         .contact-section {
             background: var(--dark-bg);
             color: var(--text-light);
-            padding: 5rem 0;
+            padding: 6rem 0;
         }
 
         .form-container {
             max-width: 600px;
             margin: 0 auto;
-            background: var(--glass-bg);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             border-radius: 20px;
             padding: 3rem;
             box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .form-group {
@@ -403,14 +702,15 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            color: #e2e8f0;
         }
 
         .form-group input,
         .form-group select {
             width: 100%;
             padding: 1rem;
-            border: none;
-            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
             background: rgba(255, 255, 255, 0.1);
             color: var(--text-light);
             font-size: 1rem;
@@ -420,8 +720,9 @@
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--stripe-purple);
+            box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.1);
         }
 
         .form-group input::placeholder {
@@ -430,11 +731,11 @@
 
         .submit-btn {
             width: 100%;
-            padding: 1rem;
+            padding: 1.2rem;
             background: var(--secondary-gradient);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
@@ -448,33 +749,47 @@
 
         /* Benefits Section */
         .benefits {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 5rem 0;
+            background: var(--stripe-bg);
+            padding: 6rem 0;
         }
 
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
         .benefit-card {
             background: white;
-            border-radius: 20px;
-            padding: 2rem;
+            border-radius: 16px;
+            padding: 2.5rem;
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .benefit-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
 
         .benefit-icon {
             font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
             margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .benefit-card p {
+            color: var(--stripe-text);
+            line-height: 1.6;
         }
 
         /* Footer */
@@ -482,13 +797,47 @@
             background: var(--dark-bg);
             color: var(--text-light);
             text-align: center;
-            padding: 2rem;
+            padding: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .phone-mockup {
+                width: 280px;
+                height: 560px;
+                padding: 15px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 0 6px #f8fafc;
+                border: 2px solid #e2e8f0;
+            }
+
+            .phone-screen {
+                padding: 25px 15px;
             }
             
             .nav-links {
@@ -504,12 +853,18 @@
                 right: 20px;
                 width: 50px;
                 height: 50px;
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
             
             .section {
                 padding-left: 1rem;
                 padding-right: 1rem;
+                padding-top: 4rem;
+                padding-bottom: 4rem;
+            }
+
+            .section h2 {
+                font-size: 2.2rem;
             }
             
             .form-container {
@@ -519,6 +874,11 @@
 
             .nav-container {
                 padding: 0 1rem;
+            }
+
+            .process-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -546,12 +906,13 @@
 
         .success-message {
             display: none;
-            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            background: var(--accent-gradient);
             color: white;
             padding: 1rem;
-            border-radius: 10px;
+            border-radius: 8px;
             margin-top: 1rem;
             text-align: center;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -563,13 +924,13 @@
                 <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                     <defs>
                         <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#667eea"/>
-                            <stop offset="100%" style="stop-color:#764ba2"/>
+                            <stop offset="0%" style="stop-color:#635bff"/>
+                            <stop offset="100%" style="stop-color:#0a2540"/>
                         </linearGradient>
                     </defs>
                     <rect width="100" height="100" fill="url(#logoGrad)" rx="20"/>
                     <path d="M25 65 L50 40 L75 65 L75 75 L60 75 L60 55 L40 55 L40 75 Z" fill="white" stroke="white" stroke-width="2"/>
-                    <circle cx="45" cy="50" r="2" fill="#667eea"/>
+                    <circle cx="45" cy="50" r="2" fill="#635bff"/>
                 </svg>
                 Apropiate
             </div>
@@ -595,17 +956,80 @@
 
     <!-- Hero Section -->
     <section class="hero" id="inicio">
-        <div class="hero-content">
-            <h1>Tu Camino Hacia la Casa Propia</h1>
-            <p>Convierte tu alquiler en la inversión de tu futuro. Con Apropiate, hacer realidad el sueño de tener tu propia vivienda es más fácil de lo que imaginas.</p>
-            <a href="#contacto" class="cta-button">Comienza Ahora</a>
+        <div class="gradient-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    Revolucionando el acceso a la vivienda
+                </div>
+                <h1>Tu Camino Hacia la Casa Propia</h1>
+                <p>Convierte tu alquiler en la inversión de tu futuro. Con Apropiate, hacer realidad el sueño de tener tu propia vivienda es más fácil de lo que imaginas.</p>
+                <div class="hero-buttons">
+                    <a href="#contacto" class="cta-button">
+                        Comienza Ahora
+                        <span>→</span>
+                    </a>
+                    <a href="#proceso" class="cta-button secondary">
+                        Ver Cómo Funciona
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="app-header">
+                            <div class="app-title">Mi Casa</div>
+                            <div class="notification-dot"></div>
+                        </div>
+                        
+                        <div class="progress-card">
+                            <div class="house-image">🏠</div>
+                            <div class="progress-info">
+                                <h3>Casa en San José</h3>
+                                <div class="progress-bar">
+                                    <div class="progress-fill"></div>
+                                </div>
+                                <div class="progress-text">
+                                    <span>65% completado</span>
+                                    <span>$97,500 / $150,000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payment-list">
+                            <div class="payment-item">
+                                <div class="payment-date">Enero 2025</div>
+                                <div class="payment-amount">+$1,200</div>
+                            </div>
+                            <div class="payment-item">
+                                <div class="payment-date">Febrero 2025</div>
+                                <div class="payment-amount">+$1,200</div>
+                            </div>
+                            <div class="payment-item">
+                                <div class="payment-date">Marzo 2025</div>
+                                <div class="payment-amount">+$1,200</div>
+                            </div>
+                            <div class="payment-item">
+                                <div class="payment-date">Abril 2025</div>
+                                <div class="payment-amount">+$1,200</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Process Section -->
     <section class="section" id="proceso">
         <h2>¿Cómo Funciona Apropiate?</h2>
-        <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem; color: #666;">
+        <p style="text-align: center; font-size: 1.3rem; margin-bottom: 2rem; color: #64748b; max-width: 600px; margin-left: auto; margin-right: auto;">
             Un proceso simple y transparente para convertirte en propietario
         </p>
         <div class="process-grid">
@@ -675,7 +1099,7 @@
     <section class="contact-section" id="contacto">
         <div class="section">
             <h2 style="color: white;">¡Comienza Tu Camino Hoy!</h2>
-            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
+            <p style="text-align: center; font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9; color: #e2e8f0; max-width: 600px; margin-left: auto; margin-right: auto;">
                 Completa este formulario y te contactaremos para tu análisis financiero gratuito
             </p>
             <div class="form-container">
@@ -820,10 +1244,6 @@
             });
         }
         
-        // Alternative: You can also set the URL directly here for production
-        // Uncomment and update this line with your real Google Apps Script URL:
-        // const PRODUCTION_GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_REAL_ID/exec';
-        
         // Utility functions
         const utils = {
             isValidEmail: function(email) {
@@ -846,8 +1266,6 @@
             
             submitForm: async function(formData) {
                 try {
-                    // Alternative: Use the direct URL if main config fails
-                    // const scriptUrl = PRODUCTION_GOOGLE_APPS_SCRIPT_URL || CONFIG.GOOGLE_APPS_SCRIPT_URL;
                     const scriptUrl = CONFIG.GOOGLE_APPS_SCRIPT_URL;
                     
                     if (!scriptUrl || scriptUrl.includes('REPLACE_')) {
@@ -861,7 +1279,7 @@
                     
                     const response = await fetch(scriptUrl, {
                         method: 'POST',
-                        mode: 'no-cors', // Required for Google Apps Script
+                        mode: 'no-cors',
                         headers: {
                             'Content-Type': 'application/json',
                         },
@@ -885,7 +1303,6 @@
                 }
             },
             
-            // Wait for config to load
             waitForConfig: async function(maxAttempts = 50) {
                 let attempts = 0;
                 while (!configLoaded && attempts < maxAttempts) {
@@ -933,7 +1350,6 @@
         document.addEventListener('click', function(event) {
             const nav = document.querySelector('nav');
             const mobileMenu = document.getElementById('mobileMenu');
-            const toggle = document.querySelector('.mobile-menu-toggle');
             
             if (!nav.contains(event.target) && mobileMenu.classList.contains('active')) {
                 closeMobileMenu();
@@ -954,13 +1370,17 @@
             });
         });
 
-        // Navbar scroll effect
+        // Navbar scroll effect and floating button
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
+            const floatingBtn = document.getElementById('floatingBackToTop');
+            
             if (window.scrollY > 100) {
                 navbar.classList.add('scrolled');
+                floatingBtn.classList.add('visible');
             } else {
                 navbar.classList.remove('scrolled');
+                floatingBtn.classList.remove('visible');
             }
         });
 
