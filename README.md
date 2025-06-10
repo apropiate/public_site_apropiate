@@ -44,6 +44,7 @@ Ve a tu sitio: https://TU-USUARIO.github.io/apropiate-website
 Completar el formulario
 Verificar que lleguen datos a Google Sheet
 
+
 🔄 Para Hacer Cambios Futuros
 # Método 1: Editar en GitHub (más fácil)
 1. Ir a archivo en GitHub
@@ -52,12 +53,14 @@ Verificar que lleguen datos a Google Sheet
 4. Commit changes
 5. ¡Sitio se actualiza automáticamente!
 
+
 # Método 2: Git local
 git pull origin main
 # hacer cambios
 git add .
 git commit -m "Update: descripción"
 git push origin main
+
 
 🚨 Solución de Problemas
 "Sitio no aparece"
@@ -72,17 +75,21 @@ git push origin main
 📁 Verificar que el archivo se llame exactamente index.html
 📂 Verificar que esté en la raíz del repositorio
 
+
 🎨 Personalización Rápida
 Cambiar Logo/Nombre
 En index.html, buscar:
 <div class="logo">Apropiate</div>
 
+
 Cambiar Colores
 En index.html, buscar :root y cambiar:
 --primary-gradient: linear-gradient(135deg, #TU_COLOR1, #TU_COLOR2);
 
+
 Cambiar Contenido
 Buscar las secciones en index.html y editar textos directamente.
+
 
 🏆 ¡Listo!
 Tu sitio profesional está funcionando con:
@@ -91,5 +98,7 @@ Tu sitio profesional está funcionando con:
 ✅ Formulario conectado a Google Sheets
 ✅ Design moderno y responsivo
 ✅ Deploy automático en cada cambio
-Tu sitio: https://TU-USUARIO.github.io/apropiate-website
+
+
+
 🎉 ¡Felicidades! Tienes un sitio web profesional funcionando en menos de 5 minutos!
