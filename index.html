@@ -248,16 +248,30 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(10, 37, 64, 0.9);
+            background: linear-gradient(-45deg, #635bff, #ff5470, #00d4ff, #ff6b35, #10b981, #4f46e5);
+            background-size: 400% 400%;
+            animation: slideInUp 1s ease-out, badgeGradient 8s ease infinite;
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(10, 37, 64, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 0.5rem 1rem;
             border-radius: 50px;
             font-size: 0.9rem;
             margin-bottom: 2rem;
-            animation: slideInUp 1s ease-out;
             color: rgba(255, 255, 255, 0.95);
             width: fit-content;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes badgeGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .hero-badge::before {
@@ -1197,16 +1211,16 @@
                     <div class="payment-card">
                         <div class="payment-form">
                             <h3>Simulador de Ahorro</h3>
-                            <input type="text" class="form-input" placeholder="Alquiler mensual (€)" value="€1,200">
-                            <input type="text" class="form-input" placeholder="Entrada inicial (€)" value="€15,000">
+                            <input type="text" class="form-input" placeholder="Alquiler mensual ($)" value="$1,200">
+                            <input type="text" class="form-input" placeholder="Entrada inicial ($)" value="$15,000">
                             <button class="pay-button">Calcular Ahorro</button>
                         </div>
                     </div>
                     
                     <div class="analytics-widget">
                         <div class="widget-title">Ahorro acumulado</div>
-                        <div class="widget-value">€28,750</div>
-                        <div class="widget-change">+€1,200 este mes</div>
+                        <div class="widget-value">$28,750</div>
+                        <div class="widget-change">+$1,200 este mes</div>
                     </div>
                     
                     <div class="savings-indicator">
@@ -1235,25 +1249,21 @@
         </p>
         <div class="process-grid">
             <div class="process-card">
-                <div class="ai-badge">Powered by AI</div>
                 <div class="process-number">1</div>
                 <h3>Estudio financiero</h3>
+                <div class="ai-badge">Powered by AI</div>
                 <p>Contáctanos para realizar tu análisis financiero personalizado. Te ayudamos a encontrar la mejor opción para tu situación.</p>
+                
             </div>
             <div class="process-card">
                 <div class="process-number">2</div>
-                <h3>Elige tu Casa</h3>
-                <p>Selecciona la vivienda de tus sueños. Nosotros la compramos por ti desde tan solo un 5% de entrada inicial.</p>
+                <h3>Ahorra Alquilando</h3>
+                <p>Selecciona la vivienda de tus sueños y tu alquiler mensual se acumula como ahorro para la compra futura de tu vivienda.</p>
             </div>
             <div class="process-card">
                 <div class="process-number">3</div>
-                <h3>Ahorra Alquilando</h3>
-                <p>Tu alquiler mensual se acumula como ahorro para la compra futura de tu vivienda.</p>
-            </div>
-            <div class="process-card">
-                <div class="process-number">4</div>
                 <h3>¡Hazte Propietario!</h3>
-                <p>Entre los años 3 y 7, podrás acceder a tu hipoteca y convertirte oficialmente en propietario.</p>
+                <p>Entre los años 3 y 7, podrás ahorrar lo suficiente y convertirte oficialmente en propietario.</p>
             </div>
         </div>
     </section>
