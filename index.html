@@ -357,18 +357,19 @@
 
         .cta-button.secondary {
             background: rgba(16, 185, 129, 0.1);
-            color: #10b981;
+            color: #1026b9;
             border: 1px solid rgba(16, 185, 129, 0.3);
             backdrop-filter: blur(10px);
         }
 
         .cta-button.secondary::before {
-            background: rgba(16, 185, 129, 0.9);
+            background: rgba(6, 217, 171, 0.9);
+            color: white !important;
         }
 
         .cta-button.secondary:hover {
             background: rgba(16, 185, 129, 0.2);
-            color: white;
+            color: white !important;
             border-color: rgba(16, 185, 129, 0.4);
         }
 
@@ -390,26 +391,27 @@
         }
 
         .analytics-widget {
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
             border-radius: 12px;
             padding: 1.5rem;
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
             position: absolute;
-            top: -1rem;
-            right: -2rem;
-            animation: float 6s ease-in-out infinite -3s;
+            top: 2rem;
+            right: -10rem;
+            animation: float 6s ease-in-out -3s;
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .savings-indicator {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);color: white;
             border-radius: 12px;
             padding: 1rem 1.5rem;
             position: absolute;
-            bottom: 2rem;
+            bottom: -1rem;
             left: -2rem;
-            animation: float 6s ease-in-out infinite -1.5s;
+            animation: float 6s ease-in-out -1.5s;
             box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
         }
 
@@ -1137,6 +1139,9 @@
             font-weight: 500;
         }
     </style>
+
+    <link rel="stylesheet" href="website/css/hero.css">
+
 </head>
 <body>
     <!-- Navigation -->
@@ -1208,12 +1213,46 @@
             </div>
             <div class="hero-right">
                 <div class="floating-elements">
-                    <div class="payment-card">
+                    <!--<div class="payment-card">
                         <div class="payment-form">
                             <h3>Simulador de Ahorro</h3>
                             <input type="text" class="form-input" placeholder="Alquiler mensual ($)" value="$1,200">
                             <input type="text" class="form-input" placeholder="Entrada inicial ($)" value="$15,000">
                             <button class="pay-button">Calcular Ahorro</button>
+                        </div>
+                    </div>-->
+                    <div class="payment-processor floating-card-payment-processor">
+                        <div class="card-header">
+                            <h4>Proceso de Pago</h4>
+                            <div class="payment-status">
+                                <span class="status-dot"></span>
+                                <span class="status-text">Procesando...</span>
+                            </div>
+                        </div>
+                        
+                        <div class="credit-card">
+                            <div class="card-chip"></div>
+                            <div class="card-number">**** **** **** 4321</div>
+                            <div class="card-details">
+                                <div class="card-holder">JUAN PÉREZ</div>
+                                <div class="card-expiry">12/28</div>
+                            </div>
+                            <div class="card-brand">VISA</div>
+                        </div>
+                        
+                        <div class="payment-progress">
+                            <div class="progress-step active">
+                                <div class="step-icon">✓</div>
+                                <span>Validación</span>
+                            </div>
+                            <div class="progress-step processing">
+                                <div class="step-icon">'🚀'</div>
+                                <span>Procesando</span>
+                            </div>
+                            <div class="progress-step">
+                                <div class="step-icon">$</div>
+                                <span>Completado</span>
+                            </div>
                         </div>
                     </div>
                     
@@ -1723,5 +1762,8 @@
             observer.observe(card);
         });
     </script>
+
+    <script src="website/js/hero.js"></script>
+
 </body>
 </html>
