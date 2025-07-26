@@ -986,7 +986,7 @@
             .hero-right {
                 width: 100%;
                 padding: 1rem 2rem 2rem;
-                background: white;
+                background: rgba(158, 154, 158, 0.135);
             }
 
             .hero-badge {
@@ -1138,6 +1138,76 @@
             text-align: center;
             font-weight: 500;
         }
+
+        /* Login Button */
+        .login-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.2rem;
+            background: transparent;
+            color: var(--text-light);
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .login-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-1px);
+        }
+
+        nav.scrolled .login-button {
+            color: var(--text-dark);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+
+        nav.scrolled .login-button:hover {
+            background: rgba(99, 91, 255, 0.1);
+            border-color: var(--stripe-purple);
+            color: var(--stripe-purple);
+        }
+
+        .login-arrow {
+            width: 10px;
+            height: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .login-button:hover .login-arrow {
+            transform: translateX(2px);
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .login-button {
+                display: none;
+            }
+            
+            .mobile-login {
+                display: block;
+                padding: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .mobile-login a {
+                color: var(--text-dark);
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 1.1rem;
+                transition: all 0.3s ease;
+            }
+            
+            .mobile-login a:hover {
+                color: var(--stripe-purple);
+            }
+        }
+
     </style>
 
     <link rel="stylesheet" href="website/css/hero.css">
@@ -1166,6 +1236,15 @@
                 <li><a href="#beneficios">Beneficios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
+            <a href="#" class="login-button" onclick="handleLogin()">
+                Iniciar Sesión
+                <svg class="login-arrow" viewBox="0 0 10 10" aria-hidden="true">
+                    <g fill="currentColor" fill-rule="evenodd">
+                        <path d="M0 5h7"></path>
+                        <path d="M1 1l4 4-4 4"></path>
+                    </g>
+                </svg>
+            </a>
             <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
                 <span></span>
                 <span></span>
@@ -1177,6 +1256,7 @@
                 <li><a href="#proceso" onclick="closeMobileMenu()">Proceso</a></li>
                 <li><a href="#beneficios" onclick="closeMobileMenu()">Beneficios</a></li>
                 <li><a href="#contacto" onclick="closeMobileMenu()">Contacto</a></li>
+                <li class="mobile-login"><a href="#" onclick="handleLogin(); closeMobileMenu();">Iniciar sesión</a></li>
             </ul>
         </div>
     </nav>
@@ -1597,6 +1677,23 @@
             });
         }
         
+        // Login function
+        function handleLogin() {
+            // Replace this URL with your actual login page
+            window.location.href = 'https://app.apropiate.ai/login';
+            
+            // Or if you want to open in a new tab:
+            // window.open('/login', '_blank');
+            
+            // Track analytics if available
+            if (typeof utils !== 'undefined') {
+                utils.trackEvent('login_click', {
+                    event_category: 'authentication',
+                    event_label: 'header_login_button'
+                });
+            }
+        }
+
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
             const nav = document.querySelector('nav');
