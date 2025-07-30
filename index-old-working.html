@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apropiate - Tu Camino Hacia tu Casa Propia</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23635bff'/><stop offset='100%' style='stop-color:%230a2540'/></linearGradient></defs><rect width='100' height='100' fill='url(%23grad)' rx='20'/><path d='M25 65 L50 40 L75 65 L75 75 L60 75 L60 55 L40 55 L40 75 Z' fill='white' stroke='white' stroke-width='2'/><circle cx='45' cy='50' r='2' fill='%23635bff'/></svg>" type="image/svg+xml">
-    <!-- Add this after your existing stylesheets -->
-    
     <style>
         * {
             margin: 0;
@@ -58,7 +56,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(-45deg, #635bff, #2d2c2c, #00d4ff, #d44b19, #10b981, #222225, #635bff, #2d2c2c, #00d4ff, #d44b19, #10b981, #4f46e5);
+            background: linear-gradient(-45deg, #635bff, #ff5470, #00d4ff, #ff6b35, #10b981, #4f46e5);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
             clip-path: polygon(
@@ -338,12 +336,10 @@
             background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%);
             opacity: 0;
             transition: opacity 0.3s ease;
-            color: white;   
         }
 
         .cta-button:hover::before {
             opacity: 1;
-            color: white;
         }
 
         .cta-button:hover {
@@ -361,699 +357,95 @@
 
         .cta-button.secondary {
             background: rgba(16, 185, 129, 0.1);
-            color: #f6f6f7;
+            color: #1026b9;
             border: 1px solid rgba(16, 185, 129, 0.3);
             backdrop-filter: blur(10px);
         }
 
-        
+        .cta-button.secondary::before {
+            background: rgba(6, 217, 171, 0.9);
+            color: white !important;
+        }
 
         .cta-button.secondary:hover {
-            background: rgba(185, 16, 58, 0.988);
+            background: rgba(16, 185, 129, 0.2);
             color: white !important;
             border-color: rgba(16, 185, 129, 0.4);
         }
 
-        
-
-    </style>
-    
-    
-        <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --stripe-purple: #635bff;
-            --stripe-dark: #0a2540;
-            --stripe-light-blue: #00d4ff;
-            --stripe-green: #00d924;
-            --stripe-pink: #ff5470;
-            --stripe-orange: #ff6b35;
-            --primary-gradient: linear-gradient(135deg, #635bff 0%, #0a2540 100%);
-            --secondary-gradient: linear-gradient(135deg, #635bff 0%, #00d4ff 100%);
-            --accent-gradient: linear-gradient(135deg, #00d4ff 0%, #00d924 100%);
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #0a2540;
-        }
-
-        /* ===========================================
-        ENHANCED PROCESS SECTION - ROADMAP STYLE
-        =========================================== */
-
-        .section {
-            padding: 8rem 0;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
+        /* Floating UI Elements */
+        .floating-elements {
             position: relative;
-            overflow: hidden;
-        }
-
-        .section h2 {
-            font-size: 3.5rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.4rem;
-            margin-bottom: 4rem;
-            color: #64748b;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease-out 0.3s forwards;
-        }
-
-        /* ===========================================
-        ROADMAP CONTAINER
-        =========================================== */
-
-        .process-roadmap {
-            position: relative;
-            min-height: 120vh;
-            padding: 2rem 0;
-        }
-
-        /* Animated Path Line */
-        .roadmap-path {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
             width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .path-line {
-            position: absolute;
-            width: 4px;
-            height: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(
-                to bottom,
-                transparent 0%,
-                #635bff 10%,
-                #00d4ff 30%,
-                #00d924 60%,
-                #ff5470 90%,
-                transparent 100%
-            );
-            opacity: 0.3;
-            border-radius: 2px;
-        }
-
-        .path-line::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 100%;
-            background: linear-gradient(
-                to bottom,
-                transparent 0%,
-                rgba(99, 91, 255, 0.1) 10%,
-                rgba(0, 212, 255, 0.1) 30%,
-                rgba(0, 217, 36, 0.1) 60%,
-                rgba(255, 84, 112, 0.1) 90%,
-                transparent 100%
-            );
-            border-radius: 4px;
-            filter: blur(2px);
-        }
-
-        /* Progress Indicator */
-        .roadmap-progress {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 6px;
-            height: 0%;
-            background: linear-gradient(to bottom, #635bff, #00d4ff, #00d924, #ff5470);
-            border-radius: 3px;
-            z-index: 2;
-            transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 0 20px rgba(99, 91, 255, 0.5);
-        }
-
-        /* ===========================================
-        PROCESS STEPS POSITIONING
-        =========================================== */
-
-        .process-step {
-            position: absolute;
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 
-                0 20px 25px rgba(0, 0, 0, 0.1),
-                0 10px 10px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            min-width: 350px;
             max-width: 400px;
-            z-index: 5;
-            cursor: pointer;
-            
-            /* Initial animation state */
-            opacity: 0;
-            transform: scale(0.8) translateY(50px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .process-step.visible {
-            opacity: 1;
-            transform: scale(1) translateY(0);
+        .payment-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+            margin-bottom: 2rem;
+            animation: float 6s ease-in-out infinite;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .process-step.completed {
-            opacity: 0.8;
-            transform: scale(0.95);
-        }
-
-        .process-step:hover {
-            transform: scale(1.05) translateY(-10px);
-            box-shadow: 
-                0 30px 40px rgba(0, 0, 0, 0.15),
-                0 15px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Curved Roadmap Positioning */
-        .step-1 {
-            top: 10%;
-            left: 60%;
-            background: linear-gradient(135deg, rgba(99, 91, 255, 0.08) 0%, rgba(255, 255, 255, 0.95) 100%);
-            border-left: 6px solid #635bff;
-            animation-delay: 0.2s;
-        }
-
-        .step-2 {
-            top: 30%;
-            left: 15%;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(255, 255, 255, 0.95) 100%);
-            border-left: 6px solid #00d4ff;
-            animation-delay: 0.4s;
-        }
-
-        .step-3 {
-            top: 55%;
-            left: 65%;
-            background: linear-gradient(135deg, rgba(0, 217, 36, 0.08) 0%, rgba(255, 255, 255, 0.95) 100%);
-            border-left: 6px solid #00d924;
-            animation-delay: 0.6s;
-        }
-
-        .step-4 {
-            top: 75%;
-            left: 20%;
-            background: linear-gradient(135deg, rgba(255, 84, 112, 0.08) 0%, rgba(255, 255, 255, 0.95) 100%);
-            border-left: 6px solid #ff5470;
-            animation-delay: 0.8s;
-        }
-
-        /* ===========================================
-        STEP NUMBER CIRCLES
-        =========================================== */
-
-        .step-number {
-            flex-shrink: 0;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        }
-
-        .step-1 .step-number {
-            background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%);
-        }
-
-        .step-2 .step-number {
-            background: linear-gradient(135deg, #00d4ff 0%, #0ea5e9 100%);
-        }
-
-        .step-3 .step-number {
-            background: linear-gradient(135deg, #00d924 0%, #059669 100%);
-        }
-
-        .step-4 .step-number {
-            background: linear-gradient(135deg, #ff5470 0%, #ef4444 100%);
-        }
-
-        /* Animated pulse effect */
-        .process-step.visible .step-number::before {
-            content: '';
+        .analytics-widget {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
             position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border-radius: 50%;
-            background: inherit;
-            animation: pulse-ring 3s ease-out infinite;
-            z-index: -1;
+            top: 2rem;
+            right: -10rem;
+            animation: float 6s ease-in-out -3s;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        @keyframes pulse-ring {
-            0% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-            100% {
-                transform: scale(1.6);
-                opacity: 0;
-            }
+        .savings-indicator {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);color: white;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            position: absolute;
+            bottom: -1rem;
+            left: -2rem;
+            animation: float 6s ease-in-out -1.5s;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
         }
 
-        /* ===========================================
-        STEP CONTENT
-        =========================================== */
-
-        .step-content {
-            flex: 1;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
-        .step-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-        }
-
-        .step-description {
-            font-size: 1rem;
-            color: #6b7280;
+        .payment-form h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
             margin-bottom: 1rem;
-            line-height: 1.5;
+            color: var(--stripe-dark);
         }
 
-        /* ===========================================
-        SPECIAL BADGES AND INDICATORS
-        =========================================== */
-
+        /* AI Badge for process card */
         .ai-badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.3rem;
             background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%);
             color: white;
-            padding: 0.4rem 1rem;
+            padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            animation: shimmer 3s infinite;
-            box-shadow: 0 4px 12px rgba(99, 91, 255, 0.3);
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(99, 91, 255, 0.3);
         }
 
         .ai-badge::before {
             content: '🤖';
-            font-size: 1rem;
+            font-size: 0.8rem;
         }
-
-        @keyframes shimmer {
-            0%, 100% { 
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% { 
-                opacity: 0.9;
-                transform: scale(1.05);
-            }
-        }
-
-        .progress-indicator {
-            width: 100%;
-            height: 6px;
-            background: rgba(0, 212, 255, 0.2);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #00d4ff 0%, #0ea5e9 100%);
-            border-radius: 3px;
-            width: 0%;
-            animation: progress-fill 4s ease-in-out infinite;
-        }
-
-        @keyframes progress-fill {
-            0% { width: 0%; }
-            50% { width: 90%; }
-            100% { width: 100%; }
-        }
-
-        .savings-indicator {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: rgba(0, 217, 36, 0.1);
-            padding: 0.8rem 1.2rem;
-            border-radius: 16px;
-            border: 1px solid rgba(0, 217, 36, 0.2);
-        }
-
-        .savings-amount {
-            background: linear-gradient(135deg, #00d924 0%, #059669 100%);
-            color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
-            animation: bounce-value 3s ease-in-out infinite;
-            box-shadow: 0 4px 8px rgba(0, 217, 36, 0.3);
-        }
-
-        @keyframes bounce-value {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .completion-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: linear-gradient(135deg, #ff5470 0%, #ef4444 100%);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 16px;
-            font-weight: 700;
-            font-size: 1rem;
-            animation: celebration 3s ease-in-out infinite;
-            box-shadow: 0 8px 16px rgba(255, 84, 112, 0.3);
-        }
-
-        .crown {
-            font-size: 1.2rem;
-            animation: crown-bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes celebration {
-            0%, 100% { 
-                transform: scale(1);
-                box-shadow: 0 8px 16px rgba(255, 84, 112, 0.3);
-            }
-            50% { 
-                transform: scale(1.1);
-                box-shadow: 0 12px 24px rgba(255, 84, 112, 0.5);
-            }
-        }
-
-        @keyframes crown-bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-
-        /* ===========================================
-        CONNECTING CURVES
-        =========================================== */
-
-        .step-curve {
-            position: absolute;
-            z-index: 3;
-            opacity: 0;
-            transition: opacity 1s ease-out;
-        }
-
-        .step-curve.visible {
-            opacity: 1;
-        }
-
-        .curve-1 {
-            top: 18%;
-            left: 50%;
-            width: 200px;
-            height: 120px;
-            border: 3px solid transparent;
-            border-image: linear-gradient(45deg, #635bff, #00d4ff) 1;
-            border-radius: 0 100px 0 0;
-            border-bottom: none;
-            border-left: none;
-            animation: draw-curve 2s ease-out;
-        }
-
-        .curve-2 {
-            top: 38%;
-            left: 40%;
-            width: 250px;
-            height: 140px;
-            border: 3px solid transparent;
-            border-image: linear-gradient(45deg, #00d4ff, #00d924) 1;
-            border-radius: 100px 0 0 0;
-            border-bottom: none;
-            border-right: none;
-            animation: draw-curve 2s ease-out 0.5s;
-        }
-
-        .curve-3 {
-            top: 63%;
-            left: 45%;
-            width: 200px;
-            height: 120px;
-            border: 3px solid transparent;
-            border-image: linear-gradient(45deg, #00d924, #ff5470) 1;
-            border-radius: 0 0 0 100px;
-            border-top: none;
-            border-right: none;
-            animation: draw-curve 2s ease-out 1s;
-        }
-
-        @keyframes draw-curve {
-            0% {
-                opacity: 0;
-                stroke-dasharray: 1000;
-                stroke-dashoffset: 1000;
-            }
-            100% {
-                opacity: 1;
-                stroke-dasharray: 1000;
-                stroke-dashoffset: 0;
-            }
-        }
-
-        /* ===========================================
-        FLOATING PARTICLES
-        =========================================== */
-
-        .floating-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #635bff;
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: float-particle 8s ease-in-out infinite;
-        }
-
-        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; background: #635bff; }
-        .particle:nth-child(2) { top: 40%; left: 80%; animation-delay: -2s; background: #00d4ff; }
-        .particle:nth-child(3) { top: 60%; left: 15%; animation-delay: -4s; background: #00d924; }
-        .particle:nth-child(4) { top: 80%; left: 70%; animation-delay: -6s; background: #ff5470; }
-        .particle:nth-child(5) { top: 30%; left: 90%; animation-delay: -1s; background: #635bff; }
-        .particle:nth-child(6) { top: 70%; left: 5%; animation-delay: -3s; background: #00d4ff; }
-
-        @keyframes float-particle {
-            0%, 100% { 
-                transform: translateY(0px) translateX(0px);
-                opacity: 0.3;
-            }
-            25% { 
-                transform: translateY(-20px) translateX(10px);
-                opacity: 0.6;
-            }
-            50% { 
-                transform: translateY(-40px) translateX(-10px);
-                opacity: 0.4;
-            }
-            75% { 
-                transform: translateY(-20px) translateX(15px);
-                opacity: 0.7;
-            }
-        }
-
-        /* ===========================================
-        MOBILE RESPONSIVENESS
-        =========================================== */
-
-        @media (max-width: 1024px) {
-            .section {
-                padding: 6rem 1rem;
-            }
-
-            .section h2 {
-                font-size: 2.8rem;
-            }
-
-            .section-subtitle {
-                font-size: 1.2rem;
-                margin-bottom: 3rem;
-            }
-
-            .process-roadmap {
-                min-height: 150vh;
-            }
-
-            .process-step {
-                min-width: 300px;
-                max-width: 350px;
-                padding: 1.5rem;
-            }
-
-
-            /* Adjust positions for tablet */
-            .step-1 { top: 8%; left: 55%; }
-            .step-2 { top: 28%; left: 10%; }
-            .step-3 { top: 52%; left: 60%; }
-            .step-4 { top: 72%; left: 15%; }
-        }
-
-        @media (max-width: 768px) {
-            .section {
-                padding: 4rem 1rem;
-            }
-
-            .section h2 {
-                font-size: 2.2rem;
-            }
-
-            .section-subtitle {
-                font-size: 1rem;
-                margin-bottom: 2rem;
-            }
-
-            .process-roadmap {
-                min-height: 200vh;
-                padding: 1rem 0;
-            }
-
-            .process-step {
-                position: static;
-                display: block;
-                margin: 3rem auto;
-                min-width: auto;
-                max-width: 90%;
-                left: auto !important;
-                top: auto !important;
-                transform: none;
-            }
-
-            .process-step.visible {
-                transform: none;
-            }
-
-            .process-step:hover {
-                transform: scale(1.02);
-            }
-
-            .step-number {
-                width: 50px;
-                height: 50px;
-                font-size: 1rem;
-            }
-
-            .step-title {
-                font-size: 1.2rem;
-            }
-
-            .step-description {
-                font-size: 0.9rem;
-            }
-
-            /* Hide desktop path on mobile */
-            .roadmap-path,
-            .roadmap-progress,
-            .step-curve,
-            .floating-particles {
-                display: none;
-            }
-
-            /* Create mobile path */
-            .process-roadmap::before {
-                content: '';
-                position: absolute;
-                left: 2rem;
-                top: 0;
-                bottom: 0;
-                width: 4px;
-                background: linear-gradient(to bottom, #635bff, #00d4ff, #00d924, #ff5470);
-                border-radius: 2px;
-                opacity: 0.3;
-            }
-        }
-
-        /* ===========================================
-        ANIMATIONS
-        =========================================== */
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .process-step {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        /* Stagger the animations */
-        .step-1 { animation-delay: 0.2s; }
-        .step-2 { animation-delay: 0.4s; }
-        .step-3 { animation-delay: 0.6s; }
-        .step-4 { animation-delay: 0.8s; }
-    </style>
-
-    <style>
-
-        
 
         /* Simple mobile replacement for floating elements */
         .mobile-simple-form {
@@ -1114,7 +506,52 @@
             box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.1);
         }
 
-        
+        .pay-button {
+            width: 100%;
+            background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pay-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 91, 255, 0.4);
+        }
+
+        .widget-title {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .widget-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .widget-change {
+            font-size: 0.8rem;
+            color: #10b981;
+            font-weight: 500;
+        }
+
+        .savings-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .savings-amount {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 0.25rem;
+        }
 
         @keyframes slideInUp {
             from {
@@ -1127,31 +564,25 @@
             }
         }
 
-        /* Enhanced Navigation */
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
             background: transparent;
             backdrop-filter: none;
-            z-index: 10000;
+            z-index: 1000;
             padding: 1.5rem 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
         }
 
         nav.scrolled {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            box-shadow: 
-                0 -10px 25px rgba(0, 0, 0, 0.1),
-                0 10px 25px rgba(0, 0, 0, 0.1),
-                0 0 40px rgba(0, 0, 0, 0.08);
-            border-radius: 24px;
-            margin: 1rem;
-            width: calc(100% - 2rem);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
             padding: 1rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .nav-container {
@@ -1174,12 +605,6 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-        }
-        
-        nav.scrolled .logo {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         .logo:hover {
@@ -1205,17 +630,14 @@
             font-weight: 500;
             transition: all 0.3s ease;
             font-size: 0.95rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .nav-links a:hover {
             color: var(--stripe-light-blue);
-            transform: translateY(-1px);
         }
 
         nav.scrolled .nav-links a {
             color: var(--text-dark);
-            text-shadow: none;
         }
 
         nav.scrolled .nav-links a:hover {
@@ -1352,6 +774,67 @@
             font-weight: 700;
         }
 
+        /* Process Steps */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--secondary-gradient);
+        }
+
+        .process-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .process-number {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin: 0 auto 1.5rem;
+        }
+
+        .process-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .process-card p {
+            color: var(--stripe-text);
+            line-height: 1.6;
+        }
+
         /* Contact Form */
         .contact-section {
             background: var(--dark-bg);
@@ -1478,7 +961,7 @@
         }
 
         /* Enhanced mobile responsiveness for diagonal layout */
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
             .hero::before {
                 clip-path: polygon(
                     0% 85%,   /* Start at 85% height on left for mobile */
@@ -1539,6 +1022,11 @@
                 justify-content: center;
                 padding: 1rem 1.5rem;
                 font-size: 1rem;
+            }
+
+            /* Hide floating elements on mobile */
+            .floating-elements {
+                display: none;
             }
 
             /* Show simple mobile form instead */
@@ -1602,6 +1090,20 @@
                 font-size: 0.85rem;
             }
 
+            .floating-elements {
+                max-width: 350px;
+            }
+        }
+
+        /* Small desktop screens */
+        @media (max-width: 1200px) and (min-width: 1025px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .hero p {
+                font-size: 1.3rem;
+            }
         }
 
         /* Loading Animation */
@@ -1646,7 +1148,7 @@
             background: transparent;
             color: var(--text-light);
             text-decoration: none;
-            border: 1px solid rgba(46, 44, 44, 0.973);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 6px;
             font-weight: 500;
             font-size: 0.9rem;
@@ -1655,36 +1157,10 @@
         }
 
         .login-button:hover {
-            background: rgba(249, 240, 240, 0.929);
-            border-color: rgba(72, 0, 255, 0.983);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-1px);
-            color: var(--stripe-dark);
         }
-
-        /* Login Button */
-        .button-proceso {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.7rem 1.2rem;
-            background: transparent;
-            color: var(--stripe-dark);
-            text-decoration: none;
-            border: 1px solid rgba(46, 44, 44, 0.973);
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .button-proceso:hover {
-            background: rgba(34, 33, 33, 0.952);
-            border-color: rgba(72, 0, 255, 0.983);
-            transform: translateY(-1px);
-            color: var(--text-light);
-        }
-
 
         nav.scrolled .login-button {
             color: var(--text-dark);
@@ -1704,10 +1180,6 @@
         }
 
         .login-button:hover .login-arrow {
-            transform: translateX(2px);
-        }
-
-        .button-proceso:hover .login-arrow {
             transform: translateX(2px);
         }
 
@@ -1734,185 +1206,12 @@
             .mobile-login a:hover {
                 color: var(--stripe-purple);
             }
-
-            .lottie-container {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-            height: 450px;
-            z-index: 7;
-            margin: 2rem auto;
-        }
         }
 
-        /* Lottie Animation Styles - Add to your existing CSS */
-        @media (min-width: 1024px){
-            .lottie-container {
-                position: relative;
-                width: 100%;
-                max-width: 800px;
-                max-height: 850px;
-                z-index: 7;
-                margin: 2rem auto;
-            }
-        }
-
-        .lottie-animation {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            z-index: 0;
-        }
-
-
-
-        @keyframes pulse {
-            0%, 100% { 
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.3;
-            }
-            50% { 
-                transform: translate(-50%, -50%) scale(1.1);
-                opacity: 0.6;
-            }
-        }
-
-        /* Mobile responsive adjustments */
-        @media (max-width: 1024px) {
-            .lottie-container {
-                max-width: 480px;
-                max-height: 450px;
-                margin: 1rem auto;
-            }
-            
-            .lottie-container::before {
-                width: 100%;
-                height: 100%;
-            }
-
-                        .nav-links {
-                display: none;
-            }
-
-            .login-button {
-                display: none;
-            }
-
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
-            nav.scrolled {
-                margin: 0.5rem;
-                width: calc(100% - 1rem);
-                border-radius: 16px;
-            }
-
-            .hero-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-                padding: 2rem 1rem;
-                padding-top: 120px;
-            }
-
-            .hero-demo {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .phone-mockup {
-                flex: none;
-                order: -1;
-            }
-
-            .iphone {
-                width: 240px;
-                height: 480px;
-            }
-
-            .progress-chart {
-                width: 140px;
-                height: 140px;
-            }
-
-            .chart-circle {
-                width: 140px;
-                height: 140px;
-            }
-
-            .chart-inner {
-                width: 110px;
-                height: 110px;
-            }
-
-            .chart-percentage {
-                font-size: 1.6rem;
-            }
-
-            
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-description {
-                font-size: 1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .cta-button {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-
-            .section-container {
-                width: 95%;
-                padding: 2rem 1rem;
-                border-radius: 24px;
-            }
-
-            .contact-container {
-                padding: 2rem 1rem;
-                border-radius: 24px;
-            }
-
-            .process-grid,
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .floating-back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-        }
-
-
-        @media (max-width: 480px) {
-            .lottie-container {
-                max-width: 440px;
-                height: 400px;
-            }
-        }
-
-        
-
- 
- 
     </style>
 
     <link rel="stylesheet" href="website/css/hero.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
 </head>
 <body>
     <!-- Navigation -->
@@ -1983,23 +1282,73 @@
                     <p>Convierte tu alquiler en la inversión de tu futuro. Con Apropiate, hacer realidad el sueño de tener tu propia vivienda es más fácil de lo que imaginas.</p>
                     <div class="hero-buttons">
                         <a href="#contacto" class="cta-button">
-                            Comienza ahora
+                            Comienza Ahora
                             <span>→</span>
                         </a>
-                        <a href="#proceso" class="button-proceso">
-                            Ver cómo funciona
+                        <a href="#proceso" class="cta-button secondary">
+                            Ver Cómo Funciona
                         </a>
                     </div>
                 </div>
             </div>
-            <!-- Updated Hero Right Section -->
             <div class="hero-right">
-                <!-- Lottie Animation Container -->
-                <div class="lottie-container">
-                    <div id="lottie-animation" class="lottie-animation"></div>
+                <div class="floating-elements">
+                    <!--<div class="payment-card">
+                        <div class="payment-form">
+                            <h3>Simulador de Ahorro</h3>
+                            <input type="text" class="form-input" placeholder="Alquiler mensual ($)" value="$1,200">
+                            <input type="text" class="form-input" placeholder="Entrada inicial ($)" value="$15,000">
+                            <button class="pay-button">Calcular Ahorro</button>
+                        </div>
+                    </div>-->
+                    <div class="payment-processor floating-card-payment-processor">
+                        <div class="card-header">
+                            <h4>Proceso de Pago</h4>
+                            <div class="payment-status">
+                                <span class="status-dot"></span>
+                                <span class="status-text">Procesando...</span>
+                            </div>
+                        </div>
+                        
+                        <div class="credit-card">
+                            <div class="card-chip"></div>
+                            <div class="card-number">**** **** **** 4321</div>
+                            <div class="card-details">
+                                <div class="card-holder">JUAN PÉREZ</div>
+                                <div class="card-expiry">12/28</div>
+                            </div>
+                            <div class="card-brand">VISA</div>
+                        </div>
+                        
+                        <div class="payment-progress">
+                            <div class="progress-step active">
+                                <div class="step-icon">✓</div>
+                                <span>Validación</span>
+                            </div>
+                            <div class="progress-step processing">
+                                <div class="step-icon">'🚀'</div>
+                                <span>Procesando</span>
+                            </div>
+                            <div class="progress-step">
+                                <div class="step-icon">$</div>
+                                <span>Completado</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-widget">
+                        <div class="widget-title">Ahorro acumulado</div>
+                        <div class="widget-value">$28,750</div>
+                        <div class="widget-change">+$1,200 este mes</div>
+                    </div>
+                    
+                    <div class="savings-indicator">
+                        <div class="savings-text">Progreso hacia tu casa</div>
+                        <div class="savings-amount">72% completado</div>
+                    </div>
                 </div>
                 
-                <!-- Keep your existing mobile simple form -->
+                <!-- Simple mobile replacement -->
                 <div class="mobile-simple-form">
                     <h4>¿Listo para tu casa propia?</h4>
                     <p>Descubre cuánto puedes ahorrar con nuestro sistema</p>
@@ -2014,76 +1363,26 @@
     <!-- Process Section -->
     <section class="section" id="proceso">
         <h2>¿Cómo Funciona Apropiate?</h2>
-        <p class="section-subtitle">
+        <p style="text-align: center; font-size: 1.3rem; margin-bottom: 2rem; color: #64748b; max-width: 600px; margin-left: auto; margin-right: auto;">
             Un proceso simple y transparente para convertirte en propietario
         </p>
-        
-        <div class="process-roadmap">
-            <!-- Animated Background Path -->
-            <div class="roadmap-path">
-                <div class="path-line"></div>
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="process-number">1</div>
+                <h3>Estudio financiero</h3>
+                <div class="ai-badge">Powered by AI</div>
+                <p>Contáctanos para realizar tu análisis financiero personalizado. Te ayudamos a encontrar la mejor opción para tu situación.</p>
+                
             </div>
-            
-            <!-- Progress Indicator -->
-            <div class="roadmap-progress" id="roadmapProgress"></div>
-            
-            <!-- Floating Particles -->
-            <div class="floating-particles">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
+            <div class="process-card">
+                <div class="process-number">2</div>
+                <h3>Ahorra Alquilando</h3>
+                <p>Selecciona la vivienda de tus sueños y tu alquiler mensual se acumula como ahorro para la compra futura de tu vivienda.</p>
             </div>
-            
-            <!-- Connecting Curves -->
-            <div class="step-curve curve-1" id="curve1"></div>
-            <div class="step-curve curve-2" id="curve2"></div>
-            <div class="step-curve curve-3" id="curve3"></div>
-            
-            <!-- Step 01 - Evaluation -->
-            <div class="process-step step-1" data-step="1">
-                <div class="step-number">01</div>
-                <div class="step-content">
-                    <div class="step-title">Evaluación del Perfil</div>
-                    <div class="step-description">Nuestro sistema de IA analiza tu situación financiera en tiempo real para crear un plan personalizado que se adapte a tus posibilidades.</div>
-                    <div class="ai-badge">Powered by AI</div>
-                </div>
-            </div>
-            
-            <!-- Step 02 - Choose House -->
-            <div class="process-step step-2" data-step="2">
-                <div class="step-number">02</div>
-                <div class="step-content">
-                    <div class="step-title">Elige tu Casa</div>
-                    <div class="step-description">Selecciona la vivienda ideal de nuestro catálogo pre-aprobado. Cada propiedad ha sido verificada para garantizar tu inversión.</div>
-                    <div class="progress-indicator">
-                        <div class="progress-bar"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Step 03 - Move In -->
-            <div class="process-step step-3" data-step="3">
-                <div class="step-number">03</div>
-                <div class="step-content">
-                    <div class="step-title">Mudanza Day</div>
-                    <div class="step-description">Te mudas inmediatamente y cada peso de alquiler se convierte automáticamente en ahorro para tu futura propiedad.</div>
-                </div>
-            </div>
-            
-            <!-- Step 04 - Owner -->
-            <div class="process-step step-4" data-step="4">
-                <div class="step-number">04</div>
-                <div class="step-content">
-                    <div class="step-title">Eres Propietario</div>
-                    <div class="step-description">En el tiempo acordado, ya tienes el enganche completo y accedes a tu crédito hipotecario. ¡La casa es oficialmente tuya!</div>
-                    <div class="completion-badge">
-                        <span class="crown">👑</span>
-                        <span>¡Completado!</span>
-                    </div>
-                </div>
+            <div class="process-card">
+                <div class="process-number">3</div>
+                <h3>¡Hazte Propietario!</h3>
+                <p>Entre los años 3 y 7, podrás ahorrar lo suficiente y convertirte oficialmente en propietario.</p>
             </div>
         </div>
     </section>
@@ -2192,134 +1491,7 @@
     <button class="floating-back-to-top" id="floatingBackToTop" onclick="scrollToTop()" title="Ir arriba">
         ↑
     </button>
-    <script src="./website/js/hero-animation.js"></script>
-    
-        <script>
-        // Enhanced Process Animation Controller
-        class ProcessRoadmapAnimator {
-            constructor() {
-                this.steps = document.querySelectorAll('.process-step');
-                this.curves = document.querySelectorAll('.step-curve');
-                this.progressBar = document.getElementById('roadmapProgress');
-                this.visibleSteps = new Set();
-                
-                this.init();
-            }
-            
-            init() {
-                // Set up intersection observer for scroll animations
-                this.setupScrollObserver();
-                
-                // Add click handlers for steps
-                this.steps.forEach((step, index) => {
-                    step.addEventListener('click', () => {
-                        this.highlightStep(index);
-                    });
-                });
-                
-                // Initialize progress
-                this.updateProgress();
-            }
-            
-            setupScrollObserver() {
-                const options = {
-                    threshold: 0.3,
-                    rootMargin: '-10% 0px -10% 0px'
-                };
-                
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        const stepNumber = parseInt(entry.target.dataset.step);
-                        
-                        if (entry.isIntersecting) {
-                            // Add to visible steps
-                            this.visibleSteps.add(stepNumber);
-                            entry.target.classList.add('visible');
-                            
-                            // Show corresponding curve
-                            const curve = document.getElementById(`curve${stepNumber}`);
-                            if (curve) {
-                                setTimeout(() => {
-                                    curve.classList.add('visible');
-                                }, 300);
-                            }
-                            
-                            // Update progress
-                            this.updateProgress();
-                            
-                            console.log(`✨ Step ${stepNumber} is now visible`);
-                            
-                        } else {
-                            // Remove from visible steps
-                            this.visibleSteps.delete(stepNumber);
-                            
-                            // Don't remove visible class to keep steps shown once revealed
-                            // entry.target.classList.remove('visible');
-                        }
-                    });
-                }, options);
-                
-                // Observe all steps
-                this.steps.forEach(step => {
-                    observer.observe(step);
-                });
-            }
-            
-            updateProgress() {
-                const maxVisible = Math.max(...this.visibleSteps, 0);
-                const progressPercent = (maxVisible / this.steps.length) * 100;
-                
-                if (this.progressBar) {
-                    this.progressBar.style.height = `${progressPercent}%`;
-                }
-            }
-            
-            highlightStep(stepIndex) {
-                // Remove highlight from all steps
-                this.steps.forEach(step => {
-                    step.classList.remove('highlighted');
-                });
-                
-                // Add highlight to clicked step
-                this.steps[stepIndex].classList.add('highlighted');
-                
-                // Scroll to step smoothly
-                this.steps[stepIndex].scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-                
-                console.log(`🎯 Highlighted step ${stepIndex + 1}`);
-            }
-        }
-        
-        // Initialize when DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            // Small delay to ensure all elements are rendered
-            setTimeout(() => {
-                window.processRoadmapAnimator = new ProcessRoadmapAnimator();
-                console.log('🚀 Process Roadmap Animator initialized');
-            }, 500);
-        });
-        
-        // Add CSS for highlighted state
-        const style = document.createElement('style');
-        style.textContent = `
-            .process-step.highlighted {
-                transform: scale(1.08) translateY(-15px) !important;
-                box-shadow: 
-                    0 35px 50px rgba(0, 0, 0, 0.2),
-                    0 20px 20px rgba(0, 0, 0, 0.1) !important;
-                z-index: 10 !important;
-            }
-            
-            .process-step.highlighted .step-number::before {
-                animation-duration: 1s !important;
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
-    
+
     <script>
         // Configuration with environment variables
         let CONFIG = {
@@ -2538,20 +1710,20 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const targetPosition = target.offsetTop - 80;
-                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
 
-        // Enhanced scroll effects
+        // Navbar scroll effect and floating button
         window.addEventListener('scroll', function() {
-            const scrollY = window.scrollY;
             const navbar = document.getElementById('navbar');
             const floatingBtn = document.getElementById('floatingBackToTop');
             
-            // Navbar effects
-            if (scrollY > 100) {
+            if (window.scrollY > 100) {
                 navbar.classList.add('scrolled');
                 floatingBtn.classList.add('visible');
             } else {
@@ -2688,149 +1860,7 @@
         });
     </script>
 
-    <script>
-        // Enhanced Process Steps Animation Controller
-        class ProcessStepsAnimator {
-            constructor() {
-                this.currentStep = 0;
-                this.totalSteps = 4;
-                this.stepDuration = 1000; // 4 seconds per step
-                this.steps = document.querySelectorAll('.process-step');
-                this.progressRing = document.querySelector('.progress-ring-fill');
-                this.progressText = document.querySelector('.current-step');
-                
-                this.init();
-            }
-            
-            init() {
-                // Start the animation sequence
-                setTimeout(() => {
-                    this.startSequence();
-                }, 800); // Delay start by 1 second
-                
-                // Add click handlers for manual control
-                this.steps.forEach((step, index) => {
-                    step.addEventListener('click', () => {
-                        this.goToStep(index + 1);
-                    });
-                });
-            }
-            
-            startSequence() {
-                this.showStep(1);
-                
-                // Auto-advance through steps
-                this.interval = setInterval(() => {
-                    if (this.currentStep < this.totalSteps) {
-                        this.showStep(this.currentStep + 1);
-                    } else {
-                        // Restart sequence
-                        this.resetSequence();
-                        setTimeout(() => {
-                            this.showStep(1);
-                        }, 3000);
-                    }
-                }, this.stepDuration);
-            }
-            
-            showStep(stepNumber) {
-                // Hide all steps first
-                this.steps.forEach((step, index) => {
-                    step.classList.remove('active', 'completed');
-                    
-                    if (index + 1 < stepNumber) {
-                        step.classList.add('completed');
-                    } else if (index + 1 === stepNumber) {
-                        step.classList.add('active');
-                    }
-                });
-                
-                this.currentStep = stepNumber;
-                this.updateProgress();
-                
-                console.log(`🎯 Showing Step ${stepNumber}`);
-            }
-            
-            updateProgress() {
-                // Update progress ring
-                const circumference = 157; // 2 * π * r (r = 25)
-                const progress = (this.currentStep / this.totalSteps) * circumference;
-                const offset = circumference - progress;
-                
-                if (this.progressRing) {
-                    this.progressRing.style.strokeDashoffset = offset;
-                }
-                
-                // Update progress text
-                if (this.progressText) {
-                    this.progressText.textContent = this.currentStep;
-                }
-            }
-            
-            
-        }
-
-        // Initialize when DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            // Wait a bit for other animations to settle
-            setTimeout(() => {
-                window.processStepsAnimator = new ProcessStepsAnimator();
-                console.log('✅ Process Steps Animator initialized');
-            }, 1000);
-        });
-
-        // Add mobile-friendly version
-        
-
-        // Create mobile version on load and resize
-        document.addEventListener('DOMContentLoaded', createMobileSteps);
-        window.addEventListener('resize', createMobileSteps);
-        </script>
-    
     <script src="website/js/hero.js"></script>
-    <script>
-       // LOOTIE SCRIPT
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 Loading Lottie from JavaScript variable...');
-            
-            const container = document.getElementById('lottie-animation');
-            
-            if (!container) {
-                console.error('❌ Container not found');
-                return;
-            }
-
-            if (typeof lottie === 'undefined') {
-                console.error('❌ Lottie library not loaded');
-                return;
-            }
-
-            if (typeof window.heroAnimationData === 'undefined') {
-                console.error('❌ Animation data not loaded - make sure hero-animation.js is included');
-                return;
-            }
-
-            try {
-                const animation = lottie.loadAnimation({
-                    container: container,
-                    renderer: 'svg',
-                    loop: false,
-                    autoplay: true,
-                    animationData: window.heroAnimationData
-                });
-
-                animation.addEventListener('DOMLoaded', () => {
-                    console.log('✅ JavaScript variable Lottie animation loaded!');
-                });
-
-                animation.setSpeed(0.8);
-                window.lottieAnimation = animation;
-
-            } catch (error) {
-                console.error('❌ Error:', error);
-            }
-        });
-    </script>
 
 </body>
 </html>
